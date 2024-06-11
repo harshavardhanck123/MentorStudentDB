@@ -8,11 +8,17 @@ const Student =require('./models/Student.js');
 dotenv.config();
 
 const app = express();
-app.use(express.json()); // Built-in middleware to parse JSON bodies
+app.use(express.json());
 
 // Connect to MongoDB using environment variable
-mongoose.connect(process.env.MONGODB_URI);
 
+try{
+    mongoose.connect(process.env.MONGODB_URI);
+    console.log("DB connected")
+}
+catch(e){
+    console.log(e)
+}
 // API endpoints
 
 // Create Mentor
